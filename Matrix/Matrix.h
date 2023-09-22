@@ -16,10 +16,10 @@ public:
 	~Matrix();
 	void randInput();
 	void print();
-	Matrix<T> operator+(const Matrix<T> &b);
-	Matrix<T> operator-(const Matrix<T> &b);
-	Matrix<T> operator/(const Matrix<T> &b);
-	Matrix<T> operator*(const Matrix<T> &b);
+	Matrix<T> operator+(const Matrix<T>& b);
+	Matrix<T> operator-(const Matrix<T>& b);
+	Matrix<T> operator/(const Matrix<T>& b);
+	Matrix<T> operator*(const Matrix<T>& b);
 };
 template <class T>
 Matrix<T>::Matrix()
@@ -36,6 +36,11 @@ Matrix<T>::Matrix(int rows, int cols)
 	for (int i = 0; i < rows; i++)
 	{
 		arr[i] = new T[cols];
+	}
+	for (int i = 0; i < rows; i++)
+	{
+		for (int j = 0; j < cols; j++)
+			arr[i][j] = 0;
 	}
 }
 template <class T>
@@ -72,7 +77,7 @@ void Matrix<T>::randInput()
 	{
 		for (int j = 0; j < cols; j++)
 		{
-			this->arr[i][j] = rand() % 101;
+			this->arr[i][j] = (T)(rand() % 101);
 		}
 	}
 }
@@ -83,18 +88,18 @@ void Matrix<T>::print()
 	{
 		for (int j = 0; j < cols; j++)
 		{
-			cout <<arr[i][j]<< ' ';
+			cout << arr[i][j] << ' ';
 		}
 		cout << endl;
 	}
 	cout << endl;
 }
 template <class T>
-Matrix<T> Matrix<T>::operator+(const Matrix<T> &b)
+Matrix<T> Matrix<T>::operator+(const Matrix<T>& b)
 {
 	if (b.rows != rows || b.cols != cols)
 		return *this;
-	Matrix<T> rez(rows,cols);
+	Matrix<T> rez(rows, cols);
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
@@ -103,20 +108,20 @@ Matrix<T> Matrix<T>::operator+(const Matrix<T> &b)
 	return rez;
 }
 template <class T>
-Matrix<T> Matrix<T>::operator-(const Matrix<T> &b)
+Matrix<T> Matrix<T>::operator-(const Matrix<T>& b)
 {
 	if (b.rows != rows || b.cols != cols)
 		return *this;
-	Matrix<T> rez(rows,cols);
+	Matrix<T> rez(rows, cols);
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
-			rez.arr[i][j] = arr[i][j]-b.arr[i][j];
+			rez.arr[i][j] = arr[i][j] - b.arr[i][j];
 	}
 	return rez;
 }
 template <class T>
-Matrix<T> Matrix<T>::operator/(const Matrix<T> &b)
+Matrix<T> Matrix<T>::operator/(const Matrix<T>& b)
 {
 	if (b.rows != rows || b.cols != cols)
 		return *this;
@@ -141,7 +146,7 @@ Matrix<T> Matrix<T>:: operator*(const Matrix<T>& b)
 	for (int i = 0; i < rows; i++)
 	{
 		for (int j = 0; j < cols; j++)
-				rez.arr[i][j] = arr[i][j] * b.arr[i][j];
+			rez.arr[i][j] = arr[i][j] * b.arr[i][j];
 
 	}
 	return rez;
