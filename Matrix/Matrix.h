@@ -6,7 +6,7 @@ using namespace std;
 template<class T>
 class Matrix
 {
-	T** arr;
+	int** arr;
 	int rows;
 	int cols;
 public:
@@ -32,10 +32,10 @@ Matrix<T>::Matrix(int rows, int cols)
 {
 	this->rows = rows;
 	this->cols = cols;
-	arr = new T * [rows];
+	arr = new int* [rows];
 	for (int i = 0; i < rows; i++)
 	{
-		arr[i] = new T[cols];
+		arr[i] = new int[cols];
 	}
 	for (int i = 0; i < rows; i++)
 	{
@@ -43,15 +43,16 @@ Matrix<T>::Matrix(int rows, int cols)
 			arr[i][j] = 0;
 	}
 }
+
 template <class T>
 Matrix<T>::Matrix(const Matrix<T>& b)
 {
 	rows = b.rows;
 	cols = b.cols;
-	arr = new T * [rows];
+	arr = new int* [rows];
 	for (int i = 0; i < rows; i++)
 	{
-		arr[i] = new T[cols];
+		arr[i] = new int[cols];
 	}
 	for (int i = 0; i < rows; i++)
 	{
@@ -77,7 +78,7 @@ void Matrix<T>::randInput()
 	{
 		for (int j = 0; j < cols; j++)
 		{
-			this->arr[i][j] = (T)(rand() % 101);
+			arr[i][j] = rand() % 101;
 		}
 	}
 }
